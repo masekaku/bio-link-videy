@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Link Bio Keren</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #121212; /* Dark background */
+            --primary-color: #ffffff; /* White text */
+            --secondary-color: #bbbbbb; /* Lighter gray for subtitles */
+            --accent-color-1: #00ffff; /* Cyan/Electric Blue */
+            --accent-color-2: #ff00ff; /* Magenta */
+            --card-bg: rgba(30, 30, 30, 0.7); /* Slightly transparent card */
+            --font-main: 'Poppins', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a0a1a 50%, #0a1a1a 100%);
+            background-attachment: fixed; /* Gradient stays in place on scroll */
+            color: var(--primary-color);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            overflow-x: hidden; /* Prevent horizontal scroll */
+            animation: fadeInPage 1s ease-out;
+        }
+
+        @keyframes fadeInPage {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .container {
+            width: 100%;
+            max-width: 600px; /* Max width for larger screens, still single column */
+            text-align: center;
+            padding: 20px;
+            background: var(--card-bg);
+            backdrop-filter: blur(10px); /* Glassmorphism effect */
+            border-radius: 20px;
+            box-shadow: 0 8px 32px 0 rgba(0, 255, 255, 0.15), 0 0 10px rgba(255, 0, 255, 0.1);
+            animation: slideInContainer 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.3s backwards;
+        }
+
+        @keyframes slideInContainer {
+            from { opacity: 0; transform: scale(0.95) translateY(20px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
+        .profile-section {
+            margin-bottom: 30px;
+        }
+
+        .profile-photo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 15px;
+            border: 3px solid var(--accent-color-1);
+            box-shadow: 0 0 15px var(--accent-color-1), 0 0 5px var(--accent-color-2) inset;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer; /* Indicates interactivity */
+            animation: pulseBorder 2s infinite alternate;
+        }
+
+        @keyframes pulseBorder {
+            0% { box-shadow: 0 0 15px var(--accent-color-1), 0 0 5px var(--accent-color-2) inset; }
+            100% { box-shadow: 0 0 25px var(--accent-color-2), 0 0 10px var(--accent-color-1) inset; }
+        }
+
+        .profile-photo:hover {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 0 25px var(--accent-color-2), 0 0 10px var(--accent-color-1) inset, 0 0 35px var(--accent-color-1);
+        }
+
+        .profile-name {
+            font-size: 1.8em;
+            font-weight: 700;
+            margin-bottom: 5px;
+            background: linear-gradient(90deg, var(--accent-color-1), var(--accent-color-2));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: textShine 3s infinite linear;
+            background-size: 200% auto; /* Required for textShine with position */
+        }
+        
+        @keyframes textShine {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+
+        .profile-description {
+            font-size: 0.95em;
+            color: var(--secondary-color);
+            line-height: 1.6;
+            opacity: 0; /* Start hidden for animation */
+            animation: fadeInDescription 1s ease-out 1s forwards; /* Delay animation */
+        }
+
+        @keyframes fadeInDescription {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .links-section {
+            display: flex;
+            flex-direction: column;
+            gap: 15px; /* Space between buttons */
+        }
+
+        .link-button {
+            display: block;
+            background: linear-gradient(135deg, var(--accent-color-1), var(--accent-color-2));
+            color: var(--bg-color); /* Dark text on light button for contrast */
+            padding: 15px 20px;
+            text-decoration: none;
+            border-radius: 50px; /* Pill shape */
+            font-weight: 600;
+            font-size: 1em;
+            transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.2s ease, background-size 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 255, 255, 0.2), 0 2px 8px rgba(255, 0, 255, 0.15);
+            background-size: 200% auto; /* For hover gradient shift */
+            opacity: 0; /* Start hidden for staggered animation */
+            transform: translateX(-20px); /* Start off-screen for slide-in */
+        }
+        
+        /* Staggered animation for link buttons */
+        .link-button:nth-child(1) { animation: slideInButton 0.5s ease-out 1.2s forwards; }
+        .link-button:nth-child(2) { animation: slideInButton 0.5s ease-out 1.3s forwards; }
+        .link-button:nth-child(3) { animation: slideInButton 0.5s ease-out 1.4s forwards; }
+        .link-button:nth-child(4) { animation: slideInButton 0.5s ease-out 1.5s forwards; }
+        .link-button:nth-child(5) { animation: slideInButton 0.5s ease-out 1.6s forwards; }
+        .link-button:nth-child(6) { animation: slideInButton 0.5s ease-out 1.7s forwards; }
+        .link-button:nth-child(7) { animation: slideInButton 0.5s ease-out 1.8s forwards; }
+        .link-button:nth-child(8) { animation: slideInButton 0.5s ease-out 1.9s forwards; }
+        .link-button:nth-child(9) { animation: slideInButton 0.5s ease-out 2.0s forwards; }
+        .link-button:nth-child(10) { animation: slideInButton 0.5s ease-out 2.1s forwards; }
+        .link-button:nth-child(11) { animation: slideInButton 0.5s ease-out 2.2s forwards; }
+        /* Add more if needed */
+
+        @keyframes slideInButton {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .link-button:hover {
+            transform: translateY(-5px) scale(1.03);
+            box-shadow: 0 8px 25px rgba(0, 255, 255, 0.3), 0 4px 15px rgba(255, 0, 255, 0.25);
+            background-position: right center; /* Change gradient direction on hover */
+        }
+
+        .link-button::before { /* Subtle shimmer effect */
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transform: skewX(-25deg);
+            transition: left 0.7s ease-in-out;
+        }
+
+        .link-button:hover::before {
+            left: 120%;
+        }
+
+        .footer {
+            margin-top: 40px;
+            font-size: 0.8em;
+            color: var(--secondary-color);
+            opacity: 0.7;
+            animation: fadeInFooter 1s ease-out 2.3s forwards; /* Adjusted delay for footer to appear after last button */
+        }
+
+        @keyframes fadeInFooter {
+            from { opacity: 0; }
+            to { opacity: 0.7; }
+        }
+
+        .footer a {
+            color: var(--accent-color-1);
+            text-decoration: none;
+            transition: color 0.3s ease, text-shadow 0.3s ease;
+        }
+
+        .footer a:hover {
+            color: var(--accent-color-2);
+            text-shadow: 0 0 5px var(--accent-color-2);
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="profile-section">
+            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgjvWf_YKlcYlYphX74GVWVTJVGXiYl71FJ3OKTQYQkEe41jLqJ3zkfWp5JsQlq1L_nshdYQXrFi6IHQ83bTXqUkA6exo7Ug7cXcrmfNF9wxBvPGnG-pgUVux4Jn1RK_4ccYGNarsFoVRyipijyxCZ00OuXW-6CiQ4ybPytvp6s_kwKRZWoReyOFxxwCfU/s1600/1000020287.jpg" alt="pasukan videy" class="profile-photo">
+            <h1 class="profile-name">Selin</h1>
+            <p class="profile-description">
+                Asupan Videy Terupdate, Bikin Nagih Parah!✨ Klik sebelum nyesel, tonton sebelum ilang!🚀 #fyp
+            </p>
+        </div>
+
+        <div class="links-section">
+            <a href="https://koleksi-fitri-dan-salwa.vercel.app" class="link-button" target="_blank" rel="noopener noreferrer">Koleksi Fitri & Salwa</a>
+            <a href="https://linktontonvidey.blogspot.com" class="link-button" target="_blank" rel="noopener noreferrer">Videy Hijab</a>
+            <a href="https://linkvidey.my.id" class="link-button" target="_blank" rel="noopener noreferrer">Videy Random</a>
+            <a href="https://linkvidey.web.id" class="link-button" target="_blank" rel="noopener noreferrer">Videy Bocile</a>
+            <a href="https://videydaily.blogspot.com" class="link-button" target="_blank" rel="noopener noreferrer">Videy Barat</a>
+            <a href="https://videyweb.web.id" class="link-button" target="_blank" rel="noopener noreferrer">Videy Japan</a>
+            <a href="https://pasukan-videy.vercel.app" class="link-button" target="_blank" rel="noopener noreferrer">Videy STW</a>
+            <a href="https://turbo-octo-umbrella-eight.vercel.app" class="link-button" target="_blank" rel="noopener noreferrer">Donate</a>
+            <a href="https://t.me/geminionvidey" class="link-button" target="_blank" rel="noopener noreferrer">Channel Telegram</a>
+            <a href="https://x.com/dydxwae?t=panpf4oB0UQi6PD0qIhyXg&s=09" class="link-button" target="_blank" rel="noopener noreferrer">Twitter</a>
+            <a href="https://www.facebook.com/profile.php?id=61574963859119" class="link-button" target="_blank" rel="noopener noreferrer">Facebook</a>
+        </div>
+
+        <div class="footer">
+            <p>&copy; <span id="currentYear"></span> Amelia Clarisa. Dibuat dengan <span style="color: var(--accent-color-2);">❤️</span> dan 👙.</p>
+            <p>Powered by <a href="#" target="_blank" rel="noopener noreferrer">Pasukan Videy</a></p> </div>
+    </div>
+
+    <script>
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+    </script>
+
+</body>
+</html>
